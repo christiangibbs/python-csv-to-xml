@@ -17,7 +17,7 @@ microsecond = str(now.microsecond)
 
 # Take input.csv and set the file output to have a unique name
 csvFile = 'input.csv'
-xmlFile = 'output' + day + month + year + hour + minute + second + '.xml'
+xmlFile = '13088' + day + month + year + hour + minute + second + '.xml'
 
 # Open the csv file to read
 csvData = csv.reader(open(csvFile))
@@ -27,13 +27,13 @@ xmlData = open(xmlFile, 'w')
 xmlData.write('<?xml version="1.0" encoding="ISO-8859-1" ?>' + "\n")
 xmlData.write('<Orders>' + "\n")
 xmlData.write('<Order>' + "\n")
-xmlData.write('<Order_Date><![CDATA[' + day + '/' + month +'/' + year +')]]></Order_Date>' + "\n")
+xmlData.write('<Order_Date><![CDATA[' + day + '/' + month +'/' + year + ']]></Order_Date>' + "\n")
 
 # Add your order ID format - example. ID-00000
-xmlData.write('<Order_ID><![CDATA[ID-00000' + day + month + year + hour + minute + second + ']]></Order_ID>' + "\n")
+xmlData.write('<Order_ID><![CDATA[DT-13088' + day + month + year + hour + minute + second + ']]></Order_ID>' + "\n")
 
 # Add your customer ID - example. ID000
-xmlData.write('<Customer_ID><![CDATA[ID000]]></Customer_ID>' + "\n")
+xmlData.write('<Customer_ID><![CDATA[DEPN000]]></Customer_ID>' + "\n")
 xmlData.write('<Products>' + "\n")
 
 # Parse the csv file and write the styled information to an xml file
@@ -52,8 +52,8 @@ for row in csvData:
 
     rowNum +=1
 
-xmlData.write('<Products>' + "\n")
-xmlData.write('<Order>' + "\n")
+xmlData.write('</Products>' + "\n")
+xmlData.write('</Order>' + "\n")
 xmlData.write('</Orders>' + "\n")
 
 xmlData.close()
