@@ -16,8 +16,8 @@ second = str(now.second)
 microsecond = str(now.microsecond)
 
 # Take input.csv and set the file output to have a unique name
-csvFile = 'input.csv'
-xmlFile = '13088' + day + month + year + hour + minute + second + '.xml'
+csvFile = 'raw/input.csv'
+xmlFile = 'complete/13088' + day + month + year + hour + minute + second + '.xml'
 
 # Open the csv file to read
 csvData = csv.reader(open(csvFile))
@@ -43,6 +43,17 @@ for row in csvData:
         tags = row
         for i in range(len(tags)):
             tags[i] = tags[i].replace(' ', '_')
+            if tags[i] == '_SKU':
+                tags[i] = tags[i].replace('_SKU', 'SKU')
+            else:
+                tags[i] == tags[i]
+
+            if tags[i] == '_Quantity_':
+                tags[i] = tags[i].replace('_Quantity_', 'Quantity')
+            else:
+                tags[i] == tags[i]
+
+
     else:
         xmlData.write('<Item>' + "\n")
         for i in range(len(tags)):
