@@ -28,9 +28,9 @@ for i in range(len(files)):
     # Take input.csv and set the file output to have a unique name
     csvFile = files[i]
     xmlFile = 'complete/13088' + day + month + year + hour + minute + second + str(i) + '.xml'
-    
+
     # progress = (float(i)/float(file_count))*100
-    
+
     # Remove directorry
     file = csvFile.strip(dir)
 
@@ -53,7 +53,7 @@ for i in range(len(files)):
 
 
 
-    
+
     # Parse the csv file and write the styled information to an xml file
     rowNum = 0
     for row in csvData:
@@ -68,6 +68,16 @@ for i in range(len(files)):
 
                 if tags[i] == '_Quantity_':
                     tags[i] = tags[i].replace('_Quantity_', 'Quantity')
+                else:
+                    tags[i] == tags[i]
+
+                if tags[i] == '_Item_Description':
+                    tags[i] = tags[i].replace('_Item_Description', 'Item_Description')
+                else:
+                    tags[i] == tags[i]
+
+                if tags[i] == '_Product_Variation_Details':
+                    tags[i] = tags[i].replace('_Product_Variation_Details', 'Product_Variation_Details')
                 else:
                     tags[i] == tags[i]
 
