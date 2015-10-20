@@ -51,9 +51,6 @@ for i in range(len(files)):
     xmlData.write('<Customer_ID><![CDATA[DEPN000]]></Customer_ID>' + "\n")
     xmlData.write('<Products>' + "\n")
 
-
-
-
     # Parse the csv file and write the styled information to an xml file
     rowNum = 0
     for row in csvData:
@@ -61,26 +58,28 @@ for i in range(len(files)):
             tags = row
             for i in range(len(tags)):
                 tags[i] = tags[i].replace(' ', '_')
+                # Fix SKU
                 if tags[i] == '_SKU':
                     tags[i] = tags[i].replace('_SKU', 'SKU')
                 else:
                     tags[i] == tags[i]
-
+                # Fix Quantity
                 if tags[i] == '_Quantity_':
                     tags[i] = tags[i].replace('_Quantity_', 'Quantity')
                 else:
                     tags[i] == tags[i]
 
+                # Fix Item Description
                 if tags[i] == '_Item_Description':
                     tags[i] = tags[i].replace('_Item_Description', 'Item_Description')
                 else:
                     tags[i] == tags[i]
 
+                # Fix Product Variation Details
                 if tags[i] == '_Product_Variation_Details':
                     tags[i] = tags[i].replace('_Product_Variation_Details', 'Product_Variation_Details')
                 else:
                     tags[i] == tags[i]
-
 
         else:
             xmlData.write('<Item>' + "\n")
@@ -101,5 +100,6 @@ for i in range(len(files)):
 # print('Progress: ' + str(progress) + '%')
 
     # Move file to other folder when processing automatically - avoids duplicate processing
+    # Does not work with Windows, tested and working on Linux and MacOS
     shutil.move("raw/" + file, "processed/" + file)
 # print('Progress: 100%')
