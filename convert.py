@@ -29,8 +29,6 @@ for i in range(len(files)):
     csvFile = files[i]
     xmlFile = 'complete/13088' + day + month + year + hour + minute + second + str(i) + '.xml'
 
-    # progress = (float(i)/float(file_count))*100
-
     # Remove directorry
     file = csvFile.strip(dir)
 
@@ -53,7 +51,12 @@ for i in range(len(files)):
 
     # Parse the csv file and write the styled information to an xml file
     rowNum = 0
+    #rowCount = sum(1 for row in csvData)
+    #rowFault = rowCount - 1
+    #print rowFault
+
     for row in csvData:
+
         if rowNum == 0:
             tags = row
             for i in range(len(tags)):
@@ -64,8 +67,8 @@ for i in range(len(files)):
                 else:
                     tags[i] == tags[i]
                 # Fix Quantity
-                if tags[i] == '_Quantity_':
-                    tags[i] = tags[i].replace('_Quantity_', 'Quantity')
+                if tags[i] == '_Quantity':
+                    tags[i] = tags[i].replace('_Quantity', 'Quantity')
                 else:
                     tags[i] == tags[i]
 
@@ -81,11 +84,18 @@ for i in range(len(files)):
                 else:
                     tags[i] == tags[i]
 
+
         else:
             xmlData.write('<Item>' + "\n")
             for i in range(len(tags)):
+                # Remove unwanted export data
+                if row[i] == "null":
+                    row[i] = row[i].replace('null', '')
+
+                # Write to xml file
                 xmlData.write('<' + tags[i] + '>' \
-                              + '<![CDATA[' + row[i] + ']]>' + '</' + tags[i] + '>' + "\n")
+                                  + '<![CDATA[' + row[i] + ']]>' + '</' + tags[i] + '>' + "\n")
+
             xmlData.write('</Item>' + "\n")
 
         rowNum +=1
@@ -101,5 +111,5 @@ for i in range(len(files)):
 
     # Move file to other folder when processing automatically - avoids duplicate processing
     # Does not work with Windows, tested and working on Linux and MacOS
-    shutil.move("raw/" + file, "processed/" + file)
+    # shutil.move("raw/" + file, "processed/" + file)
 # print('Progress: 100%')
