@@ -84,7 +84,6 @@ for i in range(len(files)):
                 else:
                     tags[i] == tags[i]
 
-
         else:
             xmlData.write('<Item>' + "\n")
             for i in range(len(tags)):
