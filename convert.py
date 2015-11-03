@@ -88,9 +88,10 @@ for i in range(len(files)):
         else:
             xmlData.write('<Item>' + "\n")
             for i in range(len(tags)):
-                # Remove unwanted export data
-                if row[i] == "null":
-                    row[i] = row[i].replace('null', '')
+
+                if len(row) < 5:
+                    while len(row) < 5:
+                        row.append("null")
 
                 # Write to xml file
                 xmlData.write('<' + tags[i] + '>' \
