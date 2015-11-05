@@ -105,6 +105,7 @@ def ConvertToXML():
 
 def MoveFile( FileToMove ):
     # Move file to other folder when processing automatically - avoids duplicate processing
-    shutil.move("raw/" + FileToMove, "processed/" + FileToMove)
+    # os.rename("raw/" + FileToMove, "processed/" + FileToMove)
+    os.remove("raw/" + FileToMove)
 
 ConvertToXML()
